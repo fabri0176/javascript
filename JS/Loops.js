@@ -3,6 +3,8 @@ const Loops = {
         { nombre: 'Bicicleta', precio: 3200000 },
         { nombre: 'Carro', precio: 23500000 },
         { nombre: 'Moto', precio: 12000000 },
+        { nombre: 'Nevera', precio: 1850000 },
+        { nombre: 'Bus', precio: 350000000 },
     ],
     forMethod() {
         let impar;
@@ -19,13 +21,33 @@ const Loops = {
             console.table(this.carrito[iterator]);
         }
     },
-    forEachMethod(){
+    forEachMethod() {
         this.carrito.forEach((value, index) => {
             console.log(index);
             console.log(value);
         });
     },
+    forOfMethod() {
+        for (let carritoTmp of this.carrito) {
+            console.log(carritoTmp);
+        }
+
+        for ([index,value] of Object.entries(this.carrito)) {
+            console.log(`Carrito ID [${index}]] = ${JSON.stringify(value)}`);
+        }
+    },
+    forInMethod() {
+        for (let carritoTmp in this.carrito) {
+            console.log(carritoTmp);
+        }
+    },
     init() {
+        console.log('<---- START forInMethod ---->');
+        this.forInMethod();
+
+        console.log('<---- START forOfMethod ---->');
+        this.forOfMethod();
+
         console.log('<---- START forEachMethod ---->');
         this.forEachMethod();
 
