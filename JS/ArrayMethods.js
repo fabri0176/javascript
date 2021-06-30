@@ -30,15 +30,19 @@ const ArrayMethods = {
     },
     reduceMethod() {
         //Suma de puntaje de todos los equipos
-        let totalPuntos = this.equipos.reduce((puntaje, equipo) =>  puntaje + equipo.puntaje, 0 );
+        let totalPuntos = this.equipos.reduce((puntaje, equipo) => puntaje + equipo.puntaje, 0);
 
-        console.log(`Total puntaje equipos: ${totalPuntos}`);
+        console.log(`Total puntaje equipos: ${totalPuntos}`); // Total puntaje equipos: 21
     },
-    filterMethod(){
+    filterMethod() {
         let resultado = this.equipos.filter(equipo => equipo.puntaje >= 6);
 
         console.log('Equipos clasificados con más de 5 puntos');
         console.log(resultado);
+    },
+    findMethod() {
+        const result = this.equipos.find(equipo => equipo.pais == 'Colombia');
+        console.log(result); // {pais: "Colombia", puntaje: 4}
     },
     init() {
         console.log('<---- START findIndexMethod ---->');
@@ -52,6 +56,9 @@ const ArrayMethods = {
 
         console.log('<---- START filterMethod ---->');
         this.filterMethod();
+
+        console.log('<---- START findMethod ---->');
+        this.findMethod();
     }
 };
 
