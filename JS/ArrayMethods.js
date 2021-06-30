@@ -1,5 +1,6 @@
 const ArrayMethods = {
     dias: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
+    festivos: ["Lunes Festivo", "Martes Festivo", "Miercoles Festivo", "Jueves Festivo", "Viernes Festivo", "Sabado Festivo", "Domingo Festivo"],
     equipos: [
         { pais: 'Colombia', puntaje: 4, },
         { pais: 'Brasil', puntaje: 7, },
@@ -49,6 +50,15 @@ const ArrayMethods = {
 
         console.log(`Todos los equipos cumplen el puntaje mayor a 3? ${result}`); // Todos los equipos cumplen el puntaje mayor a 3? SI
     },
+    concatMethod() {
+        const concatenacion = this.dias.concat(this.festivos); 
+
+        console.log(concatenacion); //["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo", "Lunes Festivo", "Martes Festivo", "Miercoles Festivo", "Jueves Festivo", "Viernes Festivo", "Sabado Festivo", "Domingo Festivo"]
+    },
+    spreadOperatorMethod() {
+        console.log(["Ejemplo", ... "test", ... this.dias, ...this.festivos ]); 
+        // ["Ejemplo", "t", "e", "s", "t", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo", "Lunes Festivo", "Martes Festivo", "Miercoles Festivo", "Jueves Festivo", "Viernes Festivo", "Sabado Festivo", "Domingo Festivo"]
+    },
     init() {
         console.log('<---- START findIndexMethod ---->');
         this.findIndexMethod();
@@ -67,6 +77,13 @@ const ArrayMethods = {
 
         console.log('<---- START everyMethod ---->');
         this.everyMethod();
+
+        console.log('<---- START concatMethod ---->');
+        this.concatMethod();
+
+        console.log('<---- START concatSpreadOperator ---->');
+        this.spreadOperatorMethod();
+        
     }
 };
 
