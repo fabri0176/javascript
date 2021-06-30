@@ -44,6 +44,11 @@ const ArrayMethods = {
         const result = this.equipos.find(equipo => equipo.pais == 'Colombia');
         console.log(result); // {pais: "Colombia", puntaje: 4}
     },
+    everyMethod() {
+        const result = this.equipos.every(equipo => equipo.puntaje > 3) ? 'SI' : 'NO';
+
+        console.log(`Todos los equipos cumplen el puntaje mayor a 3? ${result}`); // Todos los equipos cumplen el puntaje mayor a 3? SI
+    },
     init() {
         console.log('<---- START findIndexMethod ---->');
         this.findIndexMethod();
@@ -59,6 +64,9 @@ const ArrayMethods = {
 
         console.log('<---- START findMethod ---->');
         this.findMethod();
+
+        console.log('<---- START everyMethod ---->');
+        this.everyMethod();
     }
 };
 
