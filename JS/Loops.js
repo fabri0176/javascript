@@ -41,7 +41,29 @@ const Loops = {
             console.log(carritoTmp);
         }
     },
+    includesMethod(){
+        const listaPaises = ['Colombia','Argentina','Venezuela','Ecuador'];
+
+        const result = listaPaises.includes('Argentina');
+
+        console.log(result);
+     
+    },
+    someMethod(){
+        const result = this.carrito.some(product => {
+            return (product.nombre === 'Bus');
+        });
+
+       console.log(result);
+     
+    },
     init() {
+        console.log('<---- START someMethod ---->');
+        this.someMethod();
+
+        console.log('<---- START includesMethod ---->');
+        this.includesMethod();
+
         console.log('<---- START forInMethod ---->');
         this.forInMethod();
 
