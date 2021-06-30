@@ -34,6 +34,12 @@ const ArrayMethods = {
 
         console.log(`Total puntaje equipos: ${totalPuntos}`);
     },
+    filterMethod(){
+        let resultado = this.equipos.filter(equipo => equipo.puntaje >= 6);
+
+        console.log('Equipos clasificados con más de 5 puntos');
+        console.log(resultado);
+    },
     init() {
         console.log('<---- START findIndexMethod ---->');
         this.findIndexMethod();
@@ -43,6 +49,9 @@ const ArrayMethods = {
 
         console.log('<---- START reduceMethod ---->');
         this.reduceMethod();
+
+        console.log('<---- START filterMethod ---->');
+        this.filterMethod();
     }
 };
 
