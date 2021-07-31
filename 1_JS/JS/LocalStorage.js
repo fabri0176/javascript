@@ -13,3 +13,4 @@ const none = localStorage.getItem('none');
 console.log(meses);
 console.log(none);
 
+//localStorage.clear();//BORRAR
