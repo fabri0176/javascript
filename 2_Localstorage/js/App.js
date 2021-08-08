@@ -18,7 +18,7 @@ const app = {
     },
     setTweets(tweet = {}) {
         let tweets = this.getTweets(); //Obtener tweets de localstorage
-        const id = tweets.length + 1; //Asignar id
+        const id = this.getNextId(); //Asignar id
         tweet = { id, ...tweet }; // agregar id al objeto
         tweets = [...tweets, tweet]; //Agregar tweet al consolidado
 
@@ -40,22 +40,22 @@ const app = {
     },
     eliminar(id) {
         let tweets = this.getTweets();
-        tweets = tweets.filter(tweet => { 
-            if(tweet.id != id){
+        tweets = tweets.filter(tweet => {
+            if (tweet.id != id) {
                 return true;
             }
             return false;
-        },id);
+        }, id);
         console.log(tweets);
 
 
         localStorage.setItem('tweets', JSON.stringify(tweets)); //Asignar en localstorage
     },
-    editarAction(element){
+    editarAction(element) {
         const id = element.getAttribute('data-id'); //ID Tweet
         console.log(id);
     },
-    editar(){
+    editar() {
 
     },
     getTablaMensajes() {
@@ -95,6 +95,19 @@ const app = {
     cargarVariables() {
         this.formulario = document.querySelector('#formAddLocalStorage');
         this.tablaMensajes = document.querySelector('#tablaMensajes');
+    },
+    getNextId() {
+
+        let id = 1;
+        let tweets = this.getTweets();
+        if (tweets.length === 0) { //Primer elemento
+            return id;
+        }
+
+        tweets.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
+        id = tweets[0].id + 1;
+        return id;
+
     },
     init() {
         console.log('INIT');
