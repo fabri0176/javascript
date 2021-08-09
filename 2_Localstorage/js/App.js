@@ -5,22 +5,35 @@ const app = {
         e.preventDefault();
         const title = document.querySelector('#title');
         const msg = document.querySelector('#msg');
+        const id = document.querySelector('#id');
         let tweet = {
             title: title.value,
             msg: msg.value,
+            id: id.value,
         };
+
 
         title.value = '';
         msg.value = '';
+        id.value = '';
 
         app.setTweets(tweet);
         app.listar();
     },
     setTweets(tweet = {}) {
         let tweets = this.getTweets(); //Obtener tweets de localstorage
-        const id = this.getNextId(); //Asignar id
-        tweet = { id, ...tweet }; // agregar id al objeto
-        tweets = [...tweets, tweet]; //Agregar tweet al consolidado
+
+        if(tweet.id != "" && tweet.id != null  && tweet.id != undefined){ // EDITAR
+            const index = this.getTweetIndexById(tweet.id);
+            tweets[index] = tweet;
+        }else{ //CREAR
+            const id = this.getNextId(); //Asignar id 
+            tweet.id = id; // agregar id al objeto
+            tweets = [...tweets, tweet]; //Agregar tweet al consolidado
+        }
+
+    
+        
 
         localStorage.setItem('tweets', JSON.stringify(tweets)); //Asignar en localstorage
     },
@@ -53,9 +66,27 @@ const app = {
     },
     editarAction(element) {
         const id = element.getAttribute('data-id'); //ID Tweet
-        console.log(id);
+        this.editar(id);
     },
-    editar() {
+    editar(id) {
+        let tweet = this.getTweetById(id);
+        if (tweet == undefined) {
+            return;
+        }
+
+        document.querySelector('#title').value = tweet.title;
+        document.querySelector('#msg').value = tweet.msg;
+        document.querySelector('#id').value = tweet.id;
+
+    },
+    getTweetById(id) {
+        let tweets = this.getTweets();
+        return tweets.find(tweet => tweet.id == id);
+
+    },
+    getTweetIndexById(id) {
+        let tweets = this.getTweets();
+        return tweets.findIndex(tweet => tweet.id == id);
 
     },
     getTablaMensajes() {
@@ -105,7 +136,7 @@ const app = {
         }
 
         tweets.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
-        id = tweets[0].id + 1;
+        id = parseInt(tweets[0].id) + 1;
         return id;
 
     },
