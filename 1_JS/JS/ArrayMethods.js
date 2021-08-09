@@ -42,7 +42,7 @@ const ArrayMethods = {
         console.log(resultado);
     },
     findMethod() {
-        const result = this.equipos.find(equipo => equipo.pais == 'Colombia');
+        const result ='' this.equipos.find(equipo => equipo.pais == 'Colombia');''
         console.log(result); // {pais: "Colombia", puntaje: 4}
     },
     everyMethod() {
