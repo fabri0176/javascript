@@ -59,7 +59,7 @@ const app = {
             }
             return false;
         }, id);
-        console.log(tweets);
+        
 
 
         localStorage.setItem('tweets', JSON.stringify(tweets)); //Asignar en localstorage
@@ -94,9 +94,9 @@ const app = {
     },
     listar() {
         this.limpiarTabla();
-        console.log('Listar');
+        
         const tweets = this.getTweets();
-        console.log(tweets);
+        
         const tbody = this.getTablaMensajes();
 
         let bodyHtml = '';
@@ -141,7 +141,7 @@ const app = {
 
     },
     init() {
-        console.log('INIT');
+        
         this.cargarVariables();
         this.registrarEventos();
         this.listar();
